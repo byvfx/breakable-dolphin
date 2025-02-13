@@ -3,7 +3,8 @@ import yt_dlp
 import threading
 import queue
 
-# Queue for video URLs
+sg.theme('DarkGrey9')
+
 download_queue = queue.Queue()
 
 # Function to download a video
@@ -28,10 +29,10 @@ def queue_manager(window):
     while True:
         url = download_queue.get()
         if url is None:
-            break  # Stop when None is received
+            break  
         download_video(url, window)
 
-# GUI Layout
+# Layout
 layout = [
     [sg.Text("Enter Video URL:")],
     [sg.InputText(key="-URL-", size=(50, 1)), sg.Button("Add to Queue")],
@@ -43,7 +44,7 @@ layout = [
 # Create the window
 window = sg.Window("Video Download Manager", layout)
 
-# Download thread
+# Download thread might add thread management later
 download_thread = threading.Thread(target=queue_manager, args=(window,), daemon=True)
 
 while True:
