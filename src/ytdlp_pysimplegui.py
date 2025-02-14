@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 import yt_dlp
 import threading
 import queue
+import re
 
 sg.theme('DarkGrey9')
 
@@ -32,6 +33,11 @@ def queue_manager(window):
             break  
         download_video(url, window)
 
+# New helper function to validate URLs
+def is_valid_url(url):
+    pattern = re.compile(r'^(http|https)://')
+    return pattern.match(url) is not None
+
 # Layout
 layout = [
     [sg.Text("Enter Video URL:")],
@@ -56,9 +62,12 @@ while True:
     elif event == "Add to Queue":
         url = values["-URL-"].strip()
         if url:
-            download_queue.put(url)
-            window["-QUEUE-"].update(values=list(download_queue.queue))
-            window["-LOG-"].print(f"Added to queue: {url}")
+            if not is_valid_url(url):
+                window["-LOG-"].print(f"Error: Invalid URL format for input: {url}")
+            else:
+                download_queue.put(url)
+                window["-QUEUE-"].update(values=list(download_queue.queue))
+                window["-LOG-"].print(f"Added to queue: {url}")
 
     elif event == "Start Downloads":
         if not download_thread.is_alive():
