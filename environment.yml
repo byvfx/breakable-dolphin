@@ -1,0 +1,13 @@
+name: ytdlp
+channels:
+  - conda-forge
+  - nvidia
+  - rapidsai
+  - defaults
+dependencies:
+  - python=3.12
+  - yt-dlp
+  - pysimplegui
+  - selenium
+  - python-dotenv
+prefix: C:\Users\brandon\miniconda3\envs\ytdlp

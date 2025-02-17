@@ -13,18 +13,56 @@ This repository is a small testing area for various video downloading scripts.
 
 ## Installation
 
-### Using pip
+### Prerequisites
+- Python 3.12 or higher
+- FFmpeg (required for video processing)
 
-To install the required packages:
+### Option 1: Using Conda (Recommended)
+
+1. Clone or download this repository:
+```bash
+git clone https://github.com/yourusername/breakable-dolphin.git
+cd breakable-dolphin
+```
+
+2. Create and activate the conda environment:
+```bash
+conda env create -f environment.yml
+conda activate ytdlp
+```
+
+### Option 2: Using pip
+
+1. Create a virtual environment:
+```bash
+python -m venv venv
+# On Windows:
+.\venv\Scripts\activate
+# On Unix/MacOS:
+source venv/bin/activate
+```
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-### Using conda
+### FFmpeg Installation
 
-Since the environment was created with conda, you can recreate it with:
+#### Windows
+1. Download FFmpeg from [here](https://www.gyan.dev/ffmpeg/builds/)
+2. Extract the archive
+3. Add the bin folder to your system PATH
+
+#### macOS
 ```bash
-conda create --name <env> --file requirements.txt
+brew install ffmpeg
+```
+
+#### Linux (Ubuntu/Debian)
+```bash
+sudo apt update
+sudo apt install ffmpeg
 ```
 
 ## Environment Setup for Squarespace Downloader
