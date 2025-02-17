@@ -1,7 +1,6 @@
 from yt_dlp import YoutubeDL
 import m3u8
 import requests
-from urllib.parse import urljoin
 import time
 import os
 from dotenv import load_dotenv
