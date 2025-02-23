@@ -8,9 +8,11 @@ class Downloader:
 
     def download(self, url):
         ydl_opts = {
-            'format': 'best',
-            'outtmpl': '%(title)s.%(ext)s',
-        }
+        'outtmpl': '%(title)s.%(ext)s',
+        'format': 'best',
+        'noplaylist': True,
+        'quiet': False,
+        }       
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             while not self.stop_event.is_set():
                 try:
@@ -25,14 +27,14 @@ class Downloader:
 
 # Usage
 downloader = Downloader()
-url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+url = "https://www.youtube.com/watch?v=f1A7SdVTlok"
 
 # Start download in a thread
 download_thread = threading.Thread(target=downloader.download, args=(url,))
 download_thread.start()
 
 # Let it run for a bit
-time.sleep(5)
+time.sleep(20)
 
 # Cancel the download
 print("Cancelling download...")

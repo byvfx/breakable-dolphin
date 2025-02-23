@@ -1,6 +1,6 @@
 from yt_dlp import YoutubeDL
 
-video_list = "src/video_list.txt"
+video_list = "src/yt_video_list.txt"
 
 with open(video_list) as f:
     video_urls = [line.strip() for line in f if line.strip()]
